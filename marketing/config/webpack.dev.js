@@ -13,11 +13,9 @@ const devConfig = {
   plugins: [
     new ModuleFederationPlugin({
       name: "marketing",
-      library: { type: "var", name: "marketing" },
       filename: "remoteEntry.js",
       exposes: {
         "./MarketingApp": "./src/bootstrap",
-
       },
     }),
     new HtmlWebpackPlugin({
