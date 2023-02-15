@@ -1,25 +1,28 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Landing from "./pages/Landing";
-// import Pricing from "./pages/Pricing";
-// import NotFound from './pages/404';
+import React, { Suspense, lazy } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./Root";
 
-import Martketing from "./components/Martketing";
+const Dashboard = lazy(() => import("./components/Dashboard"));
+const Marketing = lazy(() => import("./components/Martketing"));
+const Home = lazy(() => import("./pages/Home"));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/marketing/*", element: <Marketing /> },
+      { path: "/dashboard", element: <Dashboard /> },
+    ],
+  },
+]);
 
 const App = () => {
   return (
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path="/" element={<Landing />} />
-    //     <Route exact path="pricing" element={<Pricing />} />
-    //     <Route path="*" element={<NotFound />} />
-    //   </Routes>
-    // </BrowserRouter>
-    <>
-      <h1>Hi Container</h1>
-      <hr />
-      <Martketing />
-    </>
+    <Suspense fallback="Loading...">
+      <RouterProvider router={router} />
+    </Suspense>
   );
 };
 
