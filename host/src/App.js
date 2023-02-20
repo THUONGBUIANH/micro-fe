@@ -2,8 +2,8 @@ import React, { Suspense, lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./Root";
 
-const Dashboard = lazy(() => import("./components/Dashboard"));
-const Marketing = lazy(() => import("./components/Martketing"));
+const VueApp = lazy(() => import("./components/VueApp"));
+const ReactApp = lazy(() => import("./components/ReactApp"));
 const Home = lazy(() => import("./pages/Home"));
 
 const router = createBrowserRouter([
@@ -12,8 +12,8 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/marketing/*", element: <Marketing /> },
-      { path: "/dashboard", element: <Dashboard /> },
+      { path: "/react/*", element: <ReactApp /> },
+      { path: "/vue", element: <VueApp /> },
     ],
   },
 ]);

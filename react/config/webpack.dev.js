@@ -6,15 +6,18 @@ const commonConfig = require("./webpack.common");
 const devConfig = {
   mode: "development",
   devServer: {
-    port: 8082,
+    port: 8081,
     historyApiFallback: true,
+  },
+  output: {
+    publicPath: "http://localhost:8081/",
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "dashboard",
+      name: "reactApp",
       filename: "remoteEntry.js",
       exposes: {
-        "./DashboardApp": "./src/bootstrap",
+        "./ReactApp": "./src/bootstrap",
       },
     }),
   ],

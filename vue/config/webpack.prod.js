@@ -1,6 +1,5 @@
 const { merge } = require('webpack-merge');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const packageJson = require('../package.json');
 const commonConfig = require('./webpack.common');
 
 const prodConfig = {
@@ -11,12 +10,11 @@ const prodConfig = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'dashboard',
-      filename: 'remoteEntry.js',
+      name: "vueApp",
+      filename: "remoteEntry.js",
       exposes: {
-        './DashboardApp': './src/bootstrap',
+        "./VueApp": "./src/bootstrap",
       },
-      shared: packageJson.dependencies,
     }),
   ],
 };

@@ -14,9 +14,9 @@ export default function Error() {
     >
       <h1>Host APP</h1>
       <Container maxWidth="md">
-        <Link to="/dashboard">App Vue</Link>
+        <Link to="/vue">App Vue</Link>
         <br />
-        <Link to="/marketing">App React</Link>
+        <Link to="/react">App React</Link>
       </Container>
     </Box>
   );

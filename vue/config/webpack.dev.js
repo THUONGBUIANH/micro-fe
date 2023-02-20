@@ -1,24 +1,23 @@
 const { merge } = require("webpack-merge");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const packageJson = require("../package.json");
 
 const commonConfig = require("./webpack.common");
 
 const devConfig = {
   mode: "development",
   devServer: {
-    port: 8080,
+    port: 8082,
     historyApiFallback: true,
+  },
+  output: {
+    publicPath: "http://localhost:8082/",
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "container",
-      remotes: {
-        marketing: "marketing@http://localhost:8081/remoteEntry.js",
-        dashboard: "dashboard@http://localhost:8082/remoteEntry.js",
-      },
-      shared: {
-        ...packageJson.dependencies,
+      name: "vueApp",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./VueApp": "./src/bootstrap",
       },
     }),
   ],
