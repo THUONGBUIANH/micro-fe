@@ -1,11 +1,16 @@
 import { createBrowserRouter, createMemoryRouter } from "react-router-dom";
 import { routes } from "./Routes";
 
-export function createRouter({ strategy, initialPathname }) {
-  if (strategy === 'browser') {
-    return createBrowserRouter(routes);
+export function createRouter({ strategy, initialPathname, onNavigate }) {
+  const newRoutes = routes(onNavigate);
+
+  if (strategy === "browser") {
+    return createBrowserRouter(newRoutes, { basename: "/react" });
   }
 
   const initialEntries = [initialPathname || "/"];
-  return createMemoryRouter(routes, { initialEntries: initialEntries });
+  return createMemoryRouter(newRoutes, {
+    initialEntries: initialEntries,
+    basename: "/react",
+  });
 }

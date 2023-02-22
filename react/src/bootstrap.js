@@ -4,8 +4,8 @@ import App from "./app";
 import { createRouter } from "./routing/RouterFactory";
 
 // Mount function to start the app
-const mount = (el, { strategy, initialPathname }) => {
-  const router = createRouter({ strategy, initialPathname });
+const mount = (el, { strategy, initialPathname, onNavigate }) => {
+  const router = createRouter({ strategy, initialPathname, onNavigate });
 
   const root = createRoot(el);
 
