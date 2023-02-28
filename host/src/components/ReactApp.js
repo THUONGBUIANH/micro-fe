@@ -6,18 +6,14 @@ function ReactApp() {
   const location = useLocation();
   const navigate = useNavigate();
 
-
   const mountReactApp = useCallback((el) => {
     console.log("location.pathname", location.pathname);
     mount(el, {
       initialPathname: location.pathname,
       onNavigate: (newLoc) => {
-        // console.log("onNavigate", location);
-        // if(location.pathname !== newPathname) {
-        //   navigate(newPathname)
-        // }
-        console.log("newLoc", newLoc);
-        
+        if (location.pathname !== newLoc?.pathname) {
+          navigate(`/react${newLoc?.pathname}`);
+        }
       },
     });
   }, []);
