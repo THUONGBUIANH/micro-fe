@@ -16,3 +16,5 @@ Navigate other applications:
 Visit http://localhost:8080 to navigate `host` app. `react` and `vue` are also exposed as standalone apps at http://localhost:8081 and http://localhost:8082 respectively. 
 
 <br>
+
+# Use SWC transform code to JS
